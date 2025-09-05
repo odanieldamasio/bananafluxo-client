@@ -6,6 +6,7 @@ import Link from "next/link";
 import { HiOutlineLogout } from "react-icons/hi";
 
 import { HiOutlineHome } from "react-icons/hi2";
+import { SidebarButtonLogout } from './SidebarButtonLogout';
 
 export default function Sidebar() {
 
@@ -27,13 +28,7 @@ export default function Sidebar() {
         <HiOutlineHome className=" w-6 h-6" />
         Visão geral
       </Link>
-      <button
-        onClick={() => signOut({ redirect: true, callbackUrl: `/login` })}
-        className="flex text-sm items-center gap-2 w-full p-4 transition-colors text-neutral-200 hover:text-yellow-400 font-medium hover:border-r-4"
-      >
-        <HiOutlineLogout className=" w-6 h-6" />
-        Sair
-      </button>
+      <SidebarButtonLogout />
     </aside>
   );
 }
