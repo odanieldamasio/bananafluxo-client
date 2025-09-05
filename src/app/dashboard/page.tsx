@@ -1,9 +1,10 @@
-import { requireAuth } from "../../lib/auth";
+import ProtectedPage from "@/components/auth/ProtectedPage";
+import AppLayout from "@/components/layout/AppLayout";
 
-export default async function Login() {
-  const session = await requireAuth();
-  
+export default async function Dashboard() {
   return (
-    <h1>Hello, dashboard.js!</h1>
+    <ProtectedPage>
+      <AppLayout>HELLOW</AppLayout>
+    </ProtectedPage>
   );
 }
