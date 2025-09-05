@@ -1,15 +1,13 @@
 "use client";
-import { signOut } from "next-auth/react";
 import Image from "next/image";
 
-import Link from "next/link";
-import { HiOutlineLogout } from "react-icons/hi";
 
 import { HiOutlineHome } from "react-icons/hi2";
-import { SidebarButtonLogout } from './SidebarButtonLogout';
+import { SidebarButtonLogout } from "./SidebarButtonLogout";
+import SidebarItem from "./SidebarItem";
+import { HiOutlineArchive, HiOutlineLogin } from "react-icons/hi";
 
 export default function Sidebar() {
-
   return (
     <aside className="h-screen w-80 bg-[#0B1437] flex flex-col">
       <div className="block relative h-10 mb-4 px-4 py-3">
@@ -21,13 +19,7 @@ export default function Sidebar() {
           className="object-contain block max-w-[166px]"
         />
       </div>
-      <Link
-        href="/dashboard"
-        className="flex text-sm items-center gap-2 w-full p-4 transition-colors text-neutral-200 hover:text-yellow-400 font-medium hover:border-r-4"
-      >
-        <HiOutlineHome className=" w-6 h-6" />
-        Visão geral
-      </Link>
+      <SidebarItem href="/dashboard" icon={HiOutlineHome} label="Visão geral" />
       <SidebarButtonLogout />
     </aside>
   );
