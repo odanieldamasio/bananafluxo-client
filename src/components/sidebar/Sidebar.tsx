@@ -2,7 +2,7 @@
 import Image from "next/image";
 
 
-import { HiOutlineHome } from "react-icons/hi2";
+import { HiOutlineCurrencyDollar, HiOutlineHome } from "react-icons/hi2";
 import { SidebarButtonLogout } from "./SidebarButtonLogout";
 import SidebarItem from "./SidebarItem";
 import { HiOutlineArchive, HiOutlineLogin } from "react-icons/hi";
@@ -20,6 +20,8 @@ export default function Sidebar() {
         />
       </div>
       <SidebarItem href="/dashboard" icon={HiOutlineHome} label="Visão geral" />
+      <SidebarItem href="/transactions" icon={HiOutlineCurrencyDollar} label="Movimentações" />
+
       <SidebarButtonLogout />
     </aside>
   );

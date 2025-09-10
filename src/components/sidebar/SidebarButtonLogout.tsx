@@ -17,7 +17,7 @@ export function SidebarButtonLogout() {
     return (
         <button
         onClick={() => logout()}
-        className="flex text-sm items-center gap-2 w-full p-4 transition-colors text-neutral-200 hover:text-yellow-400 font-medium hover:border-r-4"
+        className="flex cursor-pointer text-sm items-center gap-2 w-full p-4 transition-colors text-neutral-200 hover:text-yellow-400 font-medium hover:border-r-4"
       >
         <HiOutlineLogout className=" w-6 h-6" />
         Sair

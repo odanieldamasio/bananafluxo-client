@@ -13,7 +13,6 @@ export default function SidebarItem({ href, icon: Icon, label }: SidebarItemProp
       href={href}
       className="flex text-sm items-center gap-2 w-full p-4 transition-colors text-neutral-200 hover:text-yellow-400 font-medium hover:border-r-4"
     >
-      {/* Renderizando o ícone */}
       <Icon className="w-6 h-6" />
       {label}
     </Link>
