@@ -14,15 +14,15 @@ const poppins = Poppins({
 });
 
 export default async function DashboardPage() {
-  const labels = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun"];
-  const renda = [1200, 1400, 1300, 1600, 1500, 1800];
-  const despesa = [800, 900, 1100, 1000, 950, 1200];
+  const labels = ["Abr", "Mai", "Jun", "Jul", "Ago", "Set"];
+  const income = [900, 1200, 1100, 1500, 1300, 1400];
+  const expense = [400, 500, 600, 700, 550, 650];
 
   return (
     <ProtectedPage>
       <AppLayout>
         <PrimaryTitle title="Visão Geral" />
-        <div className="grid gap-6 grid-cols-2 mb-6">
+        <div className="grid gap-6 grid-cols-1 mb-6 md:grid-cols-2">
           <CardToggle />
           <CardContainer>
             <p className="text-[#2E2E2E] mb-4">Valores futuros a receber</p>
@@ -35,9 +35,9 @@ export default async function DashboardPage() {
         >
           <CardContainer>
             <IncomeExpenseChart
-              income={renda}
-              expense={despesa}
               labels={labels}
+              income={income}
+              expense={expense}
             />
           </CardContainer>
         </div>

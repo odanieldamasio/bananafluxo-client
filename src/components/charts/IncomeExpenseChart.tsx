@@ -1,101 +1,126 @@
 "use client";
 
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-import { Bar } from "react-chartjs-2";
+import dynamic from "next/dynamic";
+import { ApexOptions } from "apexcharts";
 
-// Registrar módulos necessários
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 type IncomeExpenseChartProps = {
+  labels: string[];
   income: number[];
   expense: number[];
-  labels: string[];
 };
 
-export default function IncomeExpenseChart({ income, expense, labels }: IncomeExpenseChartProps) {
-  const data = {
-    labels,
-    datasets: [
-      {
-        label: "Renda",
-        data: income,
-        backgroundColor: "rgba(34,197,94,0.8)", // verde forte
-        borderRadius: 8,
-        barThickness: 40,
-      },
-      {
-        label: "Despesa",
-        data: expense,
-        backgroundColor: "rgba(239,68,68,0.8)", // vermelho forte
-        borderRadius: 8,
-        barThickness: 40,
-      },
-    ],
-  };
+export default function IncomeExpenseChart({
+  labels,
+  income,
+  expense,
+}: IncomeExpenseChartProps) {
+  const series = [
+    {
+      name: "Renda",
+      data: income,
+    },
+    {
+      name: "Despesa",
+      data: expense,
+    },
+  ];
 
-  const options = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        position: "top" as const,
-        labels: {
-          font: {
-            family: "Poppins",
-            size: 14,
-          },
-          color: "#374151",
-        },
-      },
-      title: {
-        display: true,
-        text: "Renda vs Despesa (Mensal)",
-        font: {
-          family: "Poppins",
-          size: 18,
-          weight: "bold" as const,
-        },
-        color: "#111827",
-      },
-      tooltip: {
-        backgroundColor: "#111827",
-        titleFont: { family: "Poppins" },
-        bodyFont: { family: "Poppins" },
+  const options: ApexOptions = {
+    chart: {
+      type: "area",
+      height: 350,
+      toolbar: { show: false },
+      zoom: { enabled: false },
+      fontFamily: "Poppins, sans-serif",
+      background: "transparent",
+      offsetX: 0,
+      offsetY: 0,
+    },
+    title: {
+      text: "Movimentações (6 meses)",
+      align: "left",
+      style: {
+        fontSize: "16px",
+        fontWeight: "00",
+        color: "#374151",
+        fontFamily: "Poppins",
       },
     },
-    scales: {
-      x: {
-        grid: {
-          drawOnChartArea: false,
-        },
-        ticks: {
-          font: { family: "Poppins" },
-          color: "#374151",
+    stroke: {
+      curve: "smooth",
+      width: 3,
+    },
+    fill: {
+      type: "gradient",
+      gradient: {
+        shadeIntensity: 1,
+        opacityFrom: 0.4,
+        opacityTo: 0,
+        stops: [0, 100],
+      },
+    },
+    markers: {
+      size: 0,
+      hover: { size: 6 },
+    },
+    xaxis: {
+      categories: labels,
+      axisBorder: { show: false },
+      axisTicks: { show: false },
+      labels: {
+        style: {
+          fontFamily: "Poppins",
+          fontSize: "12px",
+          colors: "#2E2E2E",
         },
       },
+    },
+    yaxis: {
+      labels: {
+        style: {
+          fontFamily: "Poppins",
+          fontSize: "12px",
+          colors: "#6b7280",
+        },
+      },
+      min: 0,
+    },
+    grid: {
+      show: true,
+      borderColor: "#e5e7eb",
+      strokeDashArray: 0,
+      xaxis: { lines: { show: false } },
+      yaxis: { lines: { show: true } },
+      padding: {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+      },
+    },
+    tooltip: {
+      theme: "light",
+      marker: { show: true },
+      x: { show: true },
       y: {
-        grid: {
-          color: "rgba(0,0,0,0.05)",
-        },
-        ticks: {
-          font: { family: "Poppins" },
-          color: "#374151",
-        },
+        formatter: (val: number) => `R$ ${val.toLocaleString("pt-BR")}`,
       },
     },
+    legend: {
+      position: "bottom",
+      horizontalAlign: "right",
+      fontFamily: "Poppins",
+      labels: { colors: "#374151" },
+    },
+    colors: ["#22c55e", "#ef4444"],
   };
 
   return (
-    <div className="w-full h-[400px]">
-      <Bar data={data} options={options} />
+    <div className="w-full min-h-80 bg-white rounded-lg">
+      {/* Adicionei mt-2 ou mt-3 para descer o título */}
+      <Chart options={options} series={series} type="area" height="100%" />
     </div>
   );
 }

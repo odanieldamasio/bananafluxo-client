@@ -7,10 +7,10 @@ export default function CardToggle() {
   return (
     <div className="p-6 border-[#EBEEEC] border bg-white rounded min-h-[152px]">
       {/* Botões do toggle */}
-      <div className="flex gap-2 mb-4 bg-gray-100 w-max border rounded  border-[#EBEEEC]">
+      <div className="flex flex-wrap gap-2 mb-4 bg-gray-100 w-full md:w-max border rounded border-[#EBEEEC]">
         <button
           onClick={() => setActive("receita")}
-          className={`text-[#2E2E2E] px-4 py-2 rounded-md transition-colors cursor-pointer ${
+          className={`w-full md:w-auto text-[#2E2E2E] flex-1 px-4 py-2 rounded-md transition-colors cursor-pointer ${
             active === "receita"
               ? ""
               : "text-gray-500 bg-white"
@@ -20,7 +20,7 @@ export default function CardToggle() {
         </button>
         <button
           onClick={() => setActive("despesa")}
-          className={`text-[#2E2E2E] px-4 py-2 rounded-md transition-colors cursor-pointer ${
+          className={`w-full md:w-auto text-[#2E2E2E] px-4 py-2 rounded-md transition-colors cursor-pointer ${
             active === "despesa"
               ? ""
               : "text-gray-500 bg-white"
