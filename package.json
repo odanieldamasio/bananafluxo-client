@@ -12,6 +12,7 @@
     "@nivo/line": "^0.99.0",
     "apexcharts": "^5.3.5",
     "chart.js": "^4.5.0",
+    "framer-motion": "^12.23.12",
     "next": "15.5.0",
     "next-auth": "^4.24.11",
     "react": "19.1.0",

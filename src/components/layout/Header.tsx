@@ -10,7 +10,7 @@ type HeaderProps = {
 
 export default function Header({ title, onMenuClick, actions }: HeaderProps) {
   return (
-    <header className="w-full bg-white border-b border-slate-200 px-4 py-3 flex items-center justify-between shadow-sm">
+    <header className="w-full bg-white border-b border-[#EBEEEC] px-4 py-3 flex items-center justify-between fixed top-0 right-0 z-40 shadow-sm shadow-[#EBEEEC]">
       {/* Botão menu (mobile) + título */}
       <div className="flex items-center gap-3">
         <button
