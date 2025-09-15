@@ -8,19 +8,17 @@ type TableProps = {
 export default function Table({ title, children }: TableProps) {
   return (
     <div className="relative flex flex-col w-full h-full overflow-auto p-6 border-[#EBEEEC] border bg-white rounded bg-clip-border">
-      <div className="w-full flex justify-between items-center mb-3 mt-1 pl-3">
+      <div className="w-full flex justify-between items-center mb-3 mt-1 flex-wrap gap-4">
         {/* Título e subtítulo */}
-        <div>
-          <h3 className="text-lg font-semibold text-slate-800">
-            {title}
-          </h3>
+        <div className="mb-4">
+          <h3 className="text-lg font-semibold text-slate-800">{title}</h3>
           <p className="text-slate-500">Visão geral das faturas.</p>
         </div>
 
         {/* Campo de busca */}
-        <div className="ml-3">
+        <div className="flex justify-end w-full md:w-auto">
           <div className="w-full max-w-sm min-w-[200px] relative">
-            <div className="relative">
+            <div className="relative hidden">
               <input
                 className="bg-white w-full pr-11 h-10 pl-3 py-2 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-400 shadow-sm focus:shadow-md"
                 placeholder="Search for invoice..."
@@ -48,10 +46,12 @@ export default function Table({ title, children }: TableProps) {
           </div>
         </div>
       </div>
-      
-      <table className="w-full text-left table-auto min-w-max">
-        {children}
-      </table>
+
+      <div className="overflow-x-auto mb-4">
+        <table className="w-full text-left table-auto min-w-max">
+          {children}
+        </table>
+      </div>
     </div>
   );
 }
