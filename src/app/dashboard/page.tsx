@@ -1,11 +1,14 @@
+"use client";
+
 import ProtectedPage from "@/components/auth/ProtectedPage";
 import AppLayout from "@/components/layout/AppLayout";
 import PrimaryTitle from "@/components/title/PrimaryTitle";
 import CardContainer from "@/components/dashboard/CardContainer";
-import React from "react";
 import CardToggle from "@/components/dashboard/CardToggle";
 import IncomeExpenseChart from "@/components/charts/IncomeExpenseChart";
 import { Poppins } from "next/font/google";
+import DashboardSkeleton from "./DashboardSkeleton";
+import { useAuthGuard } from "@/hooks/useAuthGuard";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -13,7 +16,19 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
-export default async function DashboardPage() {
+export default function DashboardPage() {
+  const { loading } = useAuthGuard();
+
+  if (loading) {
+    return (
+      <ProtectedPage>
+        <AppLayout>
+          <DashboardSkeleton />
+        </AppLayout>
+      </ProtectedPage>
+    );
+  }
+
   const labels = ["Abr", "Mai", "Jun", "Jul", "Ago", "Set"];
   const income = [900, 1200, 1100, 1500, 1300, 1400];
   const expense = [400, 500, 600, 700, 550, 650];
@@ -30,15 +45,9 @@ export default async function DashboardPage() {
           </CardContainer>
         </div>
 
-        <div
-          className={`${poppins.variable} antialiased grid gap-6 grid-cols-1`}
-        >
+        <div className={`${poppins.variable} antialiased grid gap-6 grid-cols-1`}>
           <CardContainer>
-            <IncomeExpenseChart
-              labels={labels}
-              income={income}
-              expense={expense}
-            />
+            <IncomeExpenseChart labels={labels} income={income} expense={expense} />
           </CardContainer>
         </div>
       </AppLayout>

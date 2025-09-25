@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@nivo/line": "^0.99.0",
+    "@stripe/stripe-js": "^7.9.0",
     "apexcharts": "^5.3.5",
     "chart.js": "^4.5.0",
     "framer-motion": "^12.23.12",
