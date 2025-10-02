@@ -27,20 +27,10 @@ export default function AppLayout({ children }: AppLayoutProps) {
           onMenuClick={() => setSidebarOpen(true)}
         />
 
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={pathname}
-            initial={{ opacity: 0, y: 0 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            {/* Área de conteúdo */}
-            <main className=" flex-1 overflow-y-auto">
-              <div className="max-w-[1530px] mx-auto grid p-6">{children}</div>
-            </main>
-          </motion.div>
-        </AnimatePresence>
+        {/* Área de conteúdo */}
+        <main className=" flex-1 overflow-y-auto">
+          <div className="max-w-[1530px] mx-auto grid p-6">{children}</div>
+        </main>
       </div>
     </div>
   );

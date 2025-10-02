@@ -19,7 +19,7 @@ export default function Button({
   return (
     <Link
       href={href}
-      className={`flex gap-3 ${textColor} ${bgColor} text-sm font-medium px-4 py-3 rounded transition-colors cursor-pointer`}
+      className={`flex gap-2 ${textColor} ${bgColor} text-sm font-medium px-2 py-2 rounded transition-colors cursor-pointer`}
     >
       <Icon className="w-5 h-5" />
       {label}

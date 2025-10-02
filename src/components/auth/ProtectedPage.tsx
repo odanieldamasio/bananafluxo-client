@@ -1,13 +1,19 @@
-import { getServerSession } from "next-auth";
-import { redirect } from "next/navigation";
-import { authOptions } from "@/pages/api/auth/[...nextauth]";
+"use client";
 
-export default async function ProtectedPage({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const session = await getServerSession(authOptions);
-  if (!session) redirect("/login");
+import { useSession } from "next-auth/react";
+import { ReactNode, useEffect } from "react";
+import { useRouter } from "next/navigation";
+
+export default function ProtectedRoute({ children }: { children: ReactNode }) {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (status === "loading") return;
+    if (!session) router.push("/login");
+  }, [session, status, router]);
+
+  if (status === "loading" || !session ) return <div>Carregando...</div>;
+
   return <>{children}</>;
 }
