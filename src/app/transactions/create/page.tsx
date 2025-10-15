@@ -5,11 +5,9 @@ import CreateTransactionForm from "./CreateTransactionForm";
 
 export default async function CreateTransactionPage() {
   return (
-    <ProtectedPage>
-      <AppLayout>
-        <PrimaryTitle title="Criar Movimentação" />
-        <CreateTransactionForm />
-      </AppLayout>
-    </ProtectedPage>
+    <AppLayout>
+      <PrimaryTitle title="Criar Movimentação" />
+      <CreateTransactionForm />
+    </AppLayout>
   );
 }

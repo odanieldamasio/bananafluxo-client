@@ -9,6 +9,7 @@ import IncomeExpenseChart from "@/components/charts/IncomeExpenseChart";
 import { Poppins } from "next/font/google";
 import DashboardSkeleton from "./DashboardSkeleton";
 import { useAuthGuard } from "@/hooks/useAuthGuard";
+import PageHeader from '../../components/ui/PageHeader';
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -21,11 +22,9 @@ export default function DashboardPage() {
 
   if (loading) {
     return (
-      <ProtectedPage>
-        <AppLayout>
-          <DashboardSkeleton />
-        </AppLayout>
-      </ProtectedPage>
+      <AppLayout>
+        <DashboardSkeleton />
+      </AppLayout>
     );
   }
 
@@ -34,23 +33,25 @@ export default function DashboardPage() {
   const expense = [400, 500, 600, 700, 550, 650];
 
   return (
-    <ProtectedPage>
-      <AppLayout>
-        <PrimaryTitle title="Visão Geral" />
-        <div className="grid gap-6 grid-cols-1 mb-6 md:grid-cols-2">
-          <CardToggle />
-          <CardContainer>
-            <p className="text-[#2E2E2E] mb-4">Valores futuros a receber</p>
-            <h2 className="text-[#2E2E2E] text-3xl font-semibold">R$ 900,00</h2>
-          </CardContainer>
-        </div>
+    <AppLayout>
+      <PageHeader title="Visão Geral" description="Resumo das suas finanças" />
+      <div className="grid gap-6 grid-cols-1 mb-6 md:grid-cols-2">
+        <CardToggle />
+        <CardContainer>
+          <p className="text-[#2E2E2E] mb-4">Valores futuros a receber</p>
+          <h2 className="text-[#2E2E2E] text-3xl font-semibold">R$ 900,00</h2>
+        </CardContainer>
+      </div>
 
-        <div className={`${poppins.variable} antialiased grid gap-6 grid-cols-1`}>
-          <CardContainer>
-            <IncomeExpenseChart labels={labels} income={income} expense={expense} />
-          </CardContainer>
-        </div>
-      </AppLayout>
-    </ProtectedPage>
+      <div className={`${poppins.variable} antialiased grid gap-6 grid-cols-1`}>
+        <CardContainer>
+          <IncomeExpenseChart
+            labels={labels}
+            income={income}
+            expense={expense}
+          />
+        </CardContainer>
+      </div>
+    </AppLayout>
   );
 }
